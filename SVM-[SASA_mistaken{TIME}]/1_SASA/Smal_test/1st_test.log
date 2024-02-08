@@ -1,0 +1,27 @@
+/home/ptravessa/Desktop/2023_Lab/02_Alphasyn_Truncated/01_Charmm36/04_Analysis/Total/1_SASA/Smal_test/trained_test.py:1: DeprecationWarning: 
+Pyarrow will become a required dependency of pandas in the next major release of pandas (pandas 3.0),
+(to allow more performant data types, such as the Arrow string type, and better interoperability with other libraries)
+but was not found to be installed on your system.
+If this would cause problems for you,
+please provide us feedback at https://github.com/pandas-dev/pandas/issues/54466
+        
+  import pandas as pd
+              Time    SASA  Predicted_Label
+0         0.000000  78.153                1
+1         0.000200  79.157                1
+2         0.000400  78.397                1
+3         0.000600  78.887                1
+4         0.000800  79.111                1
+...            ...     ...              ...
+724996  144.999203  69.087                0
+724997  144.999406  68.265                0
+724998  144.999594  67.777                0
+724999  144.999797  68.546                0
+725000  145.000000  68.242                0
+
+[725001 rows x 3 columns]
+Evaluation Metrics:
+Accuracy: 0.98
+Precision: 0.94
+Recall: 0.93
+F1-score: 0.93
