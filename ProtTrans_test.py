@@ -11,7 +11,7 @@ tokenizer = T5Tokenizer.from_pretrained('Rostlab/prot_t5_xl_half_uniref50-enc', 
 model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_half_uniref50-enc").to(device)
 
 # prepare your protein sequences as a list
-sequence_examples = ["PRTEINO", "SEQWENCE"]
+sequence_examples = ["PRTEINO", "ASKJDAE"]
 
 # replace all rare/ambiguous amino acids by X and introduce white-space between all amino acids
 sequence_examples = [" ".join(list(re.sub(r"[UZOB]", "X", sequence))) for sequence in sequence_examples]
@@ -33,3 +33,15 @@ emb_1 = embedding_repr.last_hidden_state[1,:8] # shape (8 x 1024)
 
 # if you want to derive a single representation (per-protein embedding) for the whole protein
 emb_0_per_protein = emb_0.mean(dim=0) # shape (1024)
+
+# Write embeddings to files
+def write_embeddings_to_file(embeddings, file_name):
+    with open(file_name, 'w') as file:
+        for embedding in embeddings:
+            embedding_str = ' '.join([str(value) for value in embedding])
+            file.write(embedding_str + '\n')
+
+# Write embeddings to files
+write_embeddings_to_file(emb_0.numpy(), 'emb_0.txt')
+write_embeddings_to_file(emb_1.numpy(), 'emb_1.txt')
+
