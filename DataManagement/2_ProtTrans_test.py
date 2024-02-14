@@ -10,7 +10,7 @@ tokenizer = T5Tokenizer.from_pretrained('Rostlab/prot_t5_xl_half_uniref50-enc', 
 # Load the model
 model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_half_uniref50-enc").to(device)
 
-sequence_examples = ["L P L P L P L"]  # Prepared sequence must have spaces or sm function to join them
+sequence_examples = ["L P L P L P L"]  # Prepared sequence must have spaces or sm function to join them with open filename()
 
 # tokenize sequences and pad up to the longest sequence in the batch
 ids = tokenizer(sequence_examples, add_special_tokens=True, padding="longest")
