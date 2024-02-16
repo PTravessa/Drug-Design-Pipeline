@@ -33,5 +33,5 @@ def write_embeddings_to_file(embeddings, file_name):
             file.write(embedding_str + '\n')
 
 # Write embeddings to files
-write_embeddings_to_file(emb_per_protein.numpy(), 'LPLPLPL_embedding.txt')
+write_embeddings_to_file(emb_per_protein.numpy(), 'LPLPLPL_embedding_copy.txt')
 print("File 'LPLPLPL_embedding.txt' created successfully. \N{check mark} \n")
