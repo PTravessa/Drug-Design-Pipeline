@@ -39,10 +39,11 @@ for _, row in df.iterrows():
         embedding_repr = model(input_ids=input_ids, attention_mask=attention_mask)
 
     # Calculate per-protein embedding
-    emb_per_protein = embedding_repr.last_hidden_state.mean(dim=1)  # shape (1 x 1024)
-
+    #dim=0
+    emb_per_protein = embedding_repr.last_hidden_state[0,:len(peptide_sequence)].mean(dim=0)  # shape (1 x 1024)
+   
     # Convert embedding to a list and prepend the peptide designation
-    embedding_list = emb_per_protein.cpu().numpy().flatten().tolist()
+    embedding_list = emb_per_protein.tolist()
     peptides_and_embeddings.append([peptide_id] + embedding_list)
 
 # Convert the list to a DataFrame
