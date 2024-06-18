@@ -76,7 +76,7 @@ with open("results.txt", "w") as f:
     }
 
     param_grid_lasso = {
-        'alphas': [0.01, 0.1, 1.0, 10.0, 100.0]
+        'alphas': [None]
     }
 
     # Grid search for RandomForestRegressor
