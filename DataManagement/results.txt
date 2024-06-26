@@ -14,20 +14,19 @@ Mean RMSE: 0.2853
 Standard Deviation: 0.0675
 ==================================================
 RandomForestRegressor:
-Scores: [-0.3503936  -0.26719481 -0.26421256]
-Mean RMSE: 0.2939
-Standard Deviation: 0.0399
+Scores: [-0.34785636 -0.2777399  -0.26845022]
+Mean RMSE: 0.2980
+Standard Deviation: 0.0354
 ==================================================
 SVR:
 Scores: [-0.34944392 -0.28302737 -0.25881092]
 Mean RMSE: 0.2971
 Standard Deviation: 0.0383
 ==================================================
-RandomForestRegressor best parameters: {'max_depth': 30, 'max_features': 'log2', 'min_samples_leaf': 1, 'min_samples_split': 10, 'n_estimators': 100}
-RandomForestRegressor best score: 0.2797
+RandomForestRegressor best parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 100}
+RandomForestRegressor best score: 0.2804
 SVR best parameters: {'C': 0.1, 'epsilon': 0.01, 'kernel': 'rbf'}
 SVR best score: 0.2690
 RidgeCV best parameters: {'alphas': (0.01, 0.1, 1.0, 10.0, 100.0)}
 RidgeCV best score: 0.3793
-LassoCV best parameters: {'alphas': None}
-LassoCV best score: 0.2853
+Grid search for LassoCV failed: The 'alphas' parameter of LassoCV must be an array-like or None. Got 0.01 instead.
