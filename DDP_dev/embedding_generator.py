@@ -4,7 +4,7 @@ import pandas as pd
 from transformers import T5Tokenizer, T5EncoderModel
 
 class EmbeddingGenerator:
-    def get_embeddings_from_prottrans(self, peptide_sequences):
+    def get_embeddings_from_prottrans(self, peptide_sequences, output_file='peptides_embs.csv'):
         # Set the device to GPU if available, otherwise use CPU
         device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
@@ -34,7 +34,7 @@ class EmbeddingGenerator:
 
             # Calculate per-protein embedding
             emb_per_protein = embedding_repr.last_hidden_state[0,:len(peptide_sequence)].mean(dim=0)  # shape (1 x 1024)
-
+        
             # Convert embedding to a list and prepend the peptide designation
             embedding_list = emb_per_protein.tolist()
             peptides_and_embeddings.append([peptide_id] + embedding_list)
@@ -44,7 +44,7 @@ class EmbeddingGenerator:
         df_embs = pd.DataFrame(peptides_and_embeddings, columns=columns)
 
         # Save the DataFrame to a CSV file
-        df_embs.to_csv('peptides_embs.csv', index=False)
-        print("Embeddings saved to 'peptides_embs.csv' successfully.")
+        df_embs.to_csv(output_file, index=False)
+        print(f"Embeddings saved to '{output_file}' successfully.")
 
         return df_embs
