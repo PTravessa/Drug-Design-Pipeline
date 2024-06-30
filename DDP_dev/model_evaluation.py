@@ -1,7 +1,8 @@
 import pickle
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn import linear_model
-from sklearn.model_selection import cross_val_score, GridSearchCV
+from sklearn.model_selection import cross_val_score,cross_val_predict, GridSearchCV
 from sklearn.metrics import make_scorer, mean_squared_error
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
@@ -52,3 +53,15 @@ class ModelEvaluation:
         with open("results.txt", "a") as f:
             f.write(f"\nBest model saved as: best_model.pkl\n")
             f.write("Scaler saved as: scaler.pkl\n")
+            
+    def plot_predictions(self, model, X_scaled, y, filename='predictions_plot.png'):
+        predictions = cross_val_predict(model, X_scaled, y, cv=self.cv)
+        plt.figure(figsize=(8, 6))
+        plt.scatter(y, predictions, alpha=0.5)
+        plt.plot([y.min(), y.max()], [y.min(), y.max()], 'r--', lw=2)
+        plt.xlabel('Actual Values')
+        plt.ylabel('Predicted Values')
+        plt.title(f'Cross-Validated Predictions - Model: {filename.split("_")[-1][:-4]}')
+        plt.savefig(filename)
+        plt.close()
+        print(f"Plot saved as '{filename}'.")

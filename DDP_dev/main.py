@@ -1,9 +1,9 @@
+import os
+import pandas as pd
 from data_preparation import DataPreparation
 from model_evaluation import ModelEvaluation
 from embedding_generator import EmbeddingGenerator
 from predictor import Predictor
-import os
-import pandas as pd
 
 def main():
     # Step 1: Generate embeddings from ProtTrans for training
@@ -41,13 +41,13 @@ def main():
             'alphas': [(0.1, 1.0, 10.0), (0.01, 0.1, 1.0, 10.0, 100.0)]
         },
         "LassoCV": {
-            'alphas': [0.01, 0.1, 1.0, 10.0, 100.0]
+            'alphas': [(0.01, 0.1, 1.0, 10.0, 100.0)]
         }
     }
 
     best_model = None
     best_score = float('inf')
-    best_params = None
+    best_model_name = None
 
     with open("results.txt", "a") as f:
         for model_name, param_grid in param_grids.items():
@@ -59,9 +59,13 @@ def main():
                 if best_rmse < best_score:
                     best_model = best_estimator
                     best_score = best_rmse
+                    best_model_name = model_name
             except Exception as e:
                 f.write(f"Grid search for {model_name} failed: {e}\n")
 
+    # Plot predictions for the best model
+    model_evaluation.plot_predictions(best_model, X_scaled, y, f'predictions_vs_actual_{best_model_name}.png')
+    
     # Step 6: Save the best model and scaler
     model_evaluation.save_model_and_scaler(best_model, scaler)
     print("Best model and scaler saved")
