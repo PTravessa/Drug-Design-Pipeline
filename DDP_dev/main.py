@@ -26,7 +26,7 @@ def main():
     # Step 5: Hyperparameter tuning and model selection
     param_grids = {
         "RandomForestRegressor": {
-            'n_estimators': [100, 200],
+            'n_estimators': [100, 200, 500],
             'max_features': [None, 'sqrt', 'log2'],
             'max_depth': [None, 10, 20, 30],
             'min_samples_split': [2, 5, 10],
@@ -38,10 +38,11 @@ def main():
             'kernel': ['linear', 'poly', 'rbf', 'sigmoid']
         },
         "RidgeCV": {
-            'alphas': [(0.1, 1.0, 10.0), (0.01, 0.1, 1.0, 10.0, 100.0)]
+            'alphas': [(0.01), (0.1),( 1.0),( 10.0), (100.0)]
         },
         "LassoCV": {
-            'alphas': [(0.01, 0.1, 1.0, 10.0, 100.0)]
+            'alphas': [0.01,10,100],
+            'max_iter': [500, 1000, 2000, 5000, 10000]
         }
     }
 
