@@ -14,17 +14,17 @@ Mean RMSE: 0.2853
 Standard Deviation: 0.0675
 ==================================================
 RandomForestRegressor:
-Scores: [-0.3566542  -0.26776226 -0.26857971]
-Mean RMSE: 0.2977
-Standard Deviation: 0.0417
+Scores: [-0.34998116 -0.27007341 -0.27114901]
+Mean RMSE: 0.2971
+Standard Deviation: 0.0374
 ==================================================
 SVR:
 Scores: [-0.34944392 -0.28302737 -0.25881092]
 Mean RMSE: 0.2971
 Standard Deviation: 0.0383
 ==================================================
-RandomForestRegressor best parameters: {'max_depth': 10, 'max_features': 'log2', 'min_samples_leaf': 4, 'min_samples_split': 5, 'n_estimators': 100}
-RandomForestRegressor best score: 0.2808
+RandomForestRegressor best parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 4, 'min_samples_split': 5, 'n_estimators': 100}
+RandomForestRegressor best score: 0.2788
 SVR best parameters: {'C': 0.1, 'epsilon': 0.01, 'kernel': 'rbf'}
 SVR best score: 0.2690
 RidgeCV best parameters: {'alphas': (0.01, 0.1, 1.0, 10.0, 100.0)}
