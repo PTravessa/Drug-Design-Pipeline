@@ -1,0 +1,36 @@
+LinearRegression:
+Scores: [-0.43407279 -0.33606837 -0.45416508]
+Mean RMSE: 0.4081
+Standard Deviation: 0.0516
+==================================================
+RidgeCV:
+Scores: [-0.42695847 -0.33801077 -0.45177765]
+Mean RMSE: 0.4056
+Standard Deviation: 0.0488
+==================================================
+LassoCV:
+Scores: [-0.41475502 -0.29150845 -0.41566372]
+Mean RMSE: 0.3740
+Standard Deviation: 0.0583
+==================================================
+RandomForestRegressor:
+Scores: [-0.39414351 -0.3580061  -0.41384605]
+Mean RMSE: 0.3887
+Standard Deviation: 0.0231
+==================================================
+SVR:
+Scores: [-0.42710079 -0.31642996 -0.40599268]
+Mean RMSE: 0.3832
+Standard Deviation: 0.0480
+==================================================
+RandomForestRegressor best parameters: {'max_depth': 20, 'max_features': 'log2', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 100}
+RandomForestRegressor best score: 0.3666
+SVR best parameters: {'C': 0.1, 'epsilon': 0.1, 'kernel': 'sigmoid'}
+SVR best score: 0.3711
+RidgeCV best parameters: {'alphas': 100.0}
+RidgeCV best score: 0.3893
+LassoCV best parameters: {'alphas': (0.01, 0.1, 1), 'max_iter': 500, 'tol': 0.001}
+LassoCV best score: 0.3795
+
+Best model saved as: best_model.pkl
+Scaler saved as: scaler.pkl
