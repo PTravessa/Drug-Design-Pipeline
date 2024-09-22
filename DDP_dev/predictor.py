@@ -25,7 +25,7 @@ class Predictor:
             print(f"Error: {e}. Ensure the CSV file has 'peptide_id' and 'peptide_sequence' columns.")
             return
 
-        # Get embeddings from ProtTrans
+        # Get embeddings from ProtT5
         embedding_generator = EmbeddingGenerator()
         new_data_embeddings = embedding_generator.get_embeddings_from_prottrans(peptide_sequences, 'new_peptides_embs.csv')
 

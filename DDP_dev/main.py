@@ -6,7 +6,7 @@ from embedding_generator import EmbeddingGenerator
 from predictor import Predictor
 
 def main():
-    # Step 1: Generate embeddings from ProtTrans for training
+    # Step 1: Generate embeddings from ProtT5 for training
     embedding_generator = EmbeddingGenerator()
     embedding_generator.get_embeddings_from_prottrans(
         pd.read_csv("peptides_rg.csv").set_index('peptide_id')['peptide_sequence']
