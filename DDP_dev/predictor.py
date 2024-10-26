@@ -18,16 +18,26 @@ class Predictor:
         # Load and preprocess the new peptide data
         new_peptide_data = pd.read_csv(new_peptide_file)
 
+        # Check if the new peptide data is empty
+        if new_peptide_data.empty:
+            print("The new peptide data file is empty. No predictions can be made.")
+            return None
+
         # Extract peptide sequences
         try:
             peptide_sequences = new_peptide_data.set_index('peptide_id')['peptide_sequence']
         except KeyError as e:
             print(f"Error: {e}. Ensure the CSV file has 'peptide_id' and 'peptide_sequence' columns.")
-            return
+            return None
 
         # Get embeddings from ProtT5
         embedding_generator = EmbeddingGenerator()
         new_data_embeddings = embedding_generator.get_embeddings_from_prottrans(peptide_sequences, 'new_peptides_embs.csv')
+
+        # Check if embeddings are empty
+        if new_data_embeddings.shape[0] == 0:
+            print("The generated embeddings are empty. No predictions can be made.")
+            return None
 
         # Convert embeddings to DataFrame if they are in numpy array format
         if isinstance(new_data_embeddings, np.ndarray):
@@ -39,7 +49,18 @@ class Predictor:
 
         # Predict
         predictions = model.predict(new_data_scaled)
-        new_peptide_data['predicted_mean_Average_Rg'] = predictions
-        new_peptide_data.to_csv("predicted_peptides.csv", index=False)
+
+        # Map predictions to peptide IDs
+        predicted_data = pd.DataFrame({
+            'peptide_id': new_data_embeddings['peptide_id'],
+            'predicted_mean_Average_Rg': predictions
+        })
+
+        # Save predictions to CSV with peptide IDs
+        predicted_data.to_csv("predicted_peptides.csv", index=False)
         print("Predictions saved to 'predicted_peptides.csv' successfully.")
-        return predictions
+
+        # Print the DataFrame containing all predictions at once
+        print("Predicted Rg values for the new peptide:\n", predicted_data)
+        
+        return predicted_data
