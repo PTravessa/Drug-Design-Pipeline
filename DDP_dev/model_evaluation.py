@@ -64,4 +64,4 @@ class ModelEvaluation:
         plt.title(f'Cross-Validated Predictions - Model: {filename.split("_")[-1][:-4]}')
         plt.savefig(filename)
         plt.close()
-        print(f"Plot saved as '{filename}'.")
+        print(f"Plot saved as '{filename}'.(Data Visualization Purposes)")

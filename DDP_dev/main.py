@@ -74,12 +74,23 @@ def main():
 
     # Step 7: Predict new peptide data
     new_peptide_data_path = "new_peptide.csv"
+
     if os.path.exists(new_peptide_data_path):
-        predictor = Predictor()
-        predictions = predictor.predict_new_peptide(new_peptide_data_path)
-        print("Predicted Rg values for the new peptide:", predictions)
+        # Check if the file is empty
+        if os.path.getsize(new_peptide_data_path) > 0:
+            predictor = Predictor()
+            predictions = predictor.predict_new_peptide(new_peptide_data_path)
+
+            # Check if any predictions were made (i.e., if the DataFrame is empty)
+            if predictions is not None and not predictions.empty:
+                print("Predicted Rg values for the new peptide:\n", predictions)
+            else:
+                print("No predictions were made due to empty data.")
+        else:
+            print(f"The file '{new_peptide_data_path}' is empty. No data to predict.")
     else:
         print(f"New peptide data file '{new_peptide_data_path}' does not exist.")
+
 
 if __name__ == "__main__":
     main()
