@@ -59,5 +59,8 @@ class Predictor:
         # Save predictions to CSV with peptide IDs
         predicted_data.to_csv("predicted_peptides.csv", index=False)
         print("Predictions saved to 'predicted_peptides.csv' successfully.")
+
+        # Print the DataFrame containing all predictions at once
+        print("Predicted Rg values for the new peptide:\n", predicted_data)
         
         return predicted_data
