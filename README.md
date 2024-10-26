@@ -1,4 +1,6 @@
 # Title: Drug Design and Pipeline Development for Proteinopathies
+#Run main.py to execute the pipeline.
+#New peptide sequences must be added to new_peptides.csv file before running main.py in order to predict new sequences of cyclic peptides.
 Problem:\
 The lack of knowledge at the molecular level of the mechanisms of action of potential drugs in
 inhibiting the aggregation of proteins associated with neurodegenerative diseases such as
